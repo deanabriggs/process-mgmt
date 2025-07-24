@@ -37,12 +37,12 @@
       id="tasksList"
       >
 
-      <cms-task-item 
+      <app-task-item 
         *ngFor="let taskEl of tasks" 
         [task]="taskEl"
         cdkDrag
         [cdkDragData]="taskEl">
-      </cms-task-item>
+      </app-task-item>
     </div>
   </div>
 </div>
