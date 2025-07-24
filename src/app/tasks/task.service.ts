@@ -31,7 +31,7 @@ export class TaskService {
       return;
     }
 
-    this.http.get<Task[]>('https://localhost:3000/tasks')
+    this.http.get<Task[]>('http://localhost:3000/tasks')
       .subscribe(
         (tasks: Task[]) => {
           this.tasks = tasks;
@@ -60,7 +60,7 @@ export class TaskService {
     newTask._id = '';
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
 
-    this.http.post<{message: string, task: Task}>('https://localhost:3000/tasks', newTask, { headers: headers })
+    this.http.post<{message: string, task: Task}>('http://localhost:3000/tasks', newTask, { headers: headers })
       .subscribe(
         (responseData) => {
           this.tasks.push(responseData.task);
@@ -86,7 +86,7 @@ export class TaskService {
     updatedTask._id = originalTask._id;
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
 
-    this.http.put<{message: string, task: Task}>('https://localhost:3000/tasks/' + originalTask._id, updatedTask, { headers: headers })
+    this.http.put<{message: string, task: Task}>('http://localhost:3000/tasks/' + originalTask._id, updatedTask, { headers: headers })
       .subscribe(
         (responseData) => {
           this.tasks[index] = responseData.task;
@@ -108,7 +108,7 @@ export class TaskService {
       return;
     }
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    this.http.delete('https://localhost:3000/tasks/' + task._id, { headers: headers })
+    this.http.delete('http://localhost:3000/tasks/' + task._id, { headers: headers })
       .subscribe(
         () => {
           this.tasks.splice(index, 1);

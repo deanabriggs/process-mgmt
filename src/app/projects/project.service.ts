@@ -31,7 +31,7 @@ export class ProjectService {
       return;
     }
 
-    this.http.get<Project[]>('https://localhost:3000/projects')
+    this.http.get<Project[]>('http://localhost:3000/projects')
       .subscribe(
         (projects: Project[]) => {
           this.projects = projects;
@@ -60,7 +60,7 @@ export class ProjectService {
     newProject._id = '';
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
 
-    this.http.post<{message: string, project: Project}>('https://localhost:3000/projects', newProject, { headers: headers })
+    this.http.post<{message: string, project: Project}>('http://localhost:3000/projects', newProject, { headers: headers })
       .subscribe(
         (responseData) => {
           this.projects.push(responseData.project);
@@ -86,7 +86,7 @@ export class ProjectService {
     updatedProject._id = originalProject._id;
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
 
-    this.http.put<{message: string, project: Project}>('https://localhost:3000/projects/' + originalProject._id, updatedProject, { headers: headers })
+    this.http.put<{message: string, project: Project}>('http://localhost:3000/projects/' + originalProject._id, updatedProject, { headers: headers })
       .subscribe(
         (responseData) => {
           this.projects[index] = responseData.project;
@@ -108,7 +108,7 @@ export class ProjectService {
       return;
     }
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    this.http.delete('https://localhost:3000/projects/' + project._id, { headers: headers })
+    this.http.delete('http://localhost:3000/projects/' + project._id, { headers: headers })
       .subscribe(
         () => {
           this.projects.splice(index, 1);

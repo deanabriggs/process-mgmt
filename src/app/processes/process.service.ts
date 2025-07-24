@@ -32,7 +32,7 @@ export class ProcesseService {
         return;
       }
   
-      this.http.get<Process[]>('https://localhost:3000/processes')
+      this.http.get<Process[]>('http://localhost:3000/processes')
         .subscribe(
           (processes: Process[]) => {
             this.processes = processes;
@@ -61,7 +61,7 @@ export class ProcesseService {
       newProcess._id = '';
       const headers = new HttpHeaders({'Content-Type': 'application/json'});
   
-      this.http.post<{message: string, process: Process}>('https://localhost:3000/processes', newProcess, { headers: headers })
+      this.http.post<{message: string, process: Process}>('http://localhost:3000/processes', newProcess, { headers: headers })
         .subscribe(
           (responseData) => {
             this.processes.push(responseData.process);
@@ -87,7 +87,7 @@ export class ProcesseService {
       updatedProcess._id = originalProcess._id;
       const headers = new HttpHeaders({'Content-Type': 'application/json'});
   
-      this.http.put<{message: string, process: Process}>('https://localhost:3000/processes/' + originalProcess._id, updatedProcess, { headers: headers })
+      this.http.put<{message: string, process: Process}>('http://localhost:3000/processes/' + originalProcess._id, updatedProcess, { headers: headers })
         .subscribe(
           (responseData) => {
             this.processes[index] = responseData.process;
@@ -109,7 +109,7 @@ export class ProcesseService {
         return;
       }
       const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-      this.http.delete('https://localhost:3000/processes/' + process._id, { headers: headers })
+      this.http.delete('http://localhost:3000/processes/' + process._id, { headers: headers })
         .subscribe(
           () => {
             this.processes.splice(index, 1);
