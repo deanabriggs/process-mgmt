@@ -56,7 +56,7 @@ app.use((req, res, next) => {
 
 // Tell express to use the specified director as the
 // root directory for your web site
-app.use(express.static(path.join(__dirname, "dist/process-mgmt/browser"))); // added "browser" to path to match mapping
+app.use(express.static(path.join(__dirname, "dist/process-mgmt")));
 
 // Tell express to map the default route ('/') to the index route
 app.use("/", index);
@@ -69,7 +69,7 @@ app.use("/projects", projectRoutes);
 // Tell express to map all other non-defined routes back to the index page
 // Newer version required syntax change form "*" to /.*/
 app.get(/.*/, (req, res) => {
-  res.sendFile(path.join(__dirname, "dist/process-mgmt/browser/index.html")); // added "browser" to path to match mapping
+  res.sendFile(path.join(__dirname, "dist/process-mgmt/index.html"));
 });
 
 // Define the port address and tell express to use this port
