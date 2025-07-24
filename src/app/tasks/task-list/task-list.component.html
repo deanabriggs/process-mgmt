@@ -1,0 +1,48 @@
+<div class="card shadow-sm mb-4">
+
+  <div class="card-header">
+    <div class="row align-items-center mb-2">
+      <div class="col">
+        <h5 class="mb-0">Tasks</h5>
+      </div>
+    </div>
+
+    <div class="row g-2 align-items-center">
+      <div class="col-md-7">
+        <div class="input-group">
+          <input
+            type="text"
+            #searchBox
+            (keyup)="search(searchBox.value)"
+            class="form-control"
+            placeholder="Enter a search value">
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            (click)="search(searchBox.value)">
+            <i class="bi bi-search"></i> <!-- Bootstrap Icons -->
+          </button>
+        </div>
+      </div>
+      <div class="col-md-auto text-end">
+        <a class="btn btn-success" [routerLink]="['new']">New Task</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <div
+      class="list-group"
+      cdkDropList
+      id="tasksList"
+      >
+
+      <cms-task-item 
+        *ngFor="let taskEl of tasks" 
+        [task]="taskEl"
+        cdkDrag
+        [cdkDragData]="taskEl">
+      </cms-task-item>
+    </div>
+  </div>
+</div>

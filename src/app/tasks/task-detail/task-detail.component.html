@@ -1,0 +1,25 @@
+<div class="panel panel-default">
+
+    <div class="panel-heading">
+        <h1>{{task.title}}</h1>
+        <div class="pull-right">
+            <a class="btn btn-primary btn-sm" 
+                style="margin-right: 5px"
+                [routerLink]="['/tasks', task.id, 'edit']"
+                >Edit</a>
+            <a class="btn btn-danger btn-sm" (click)="onDelete()">Delete</a>
+        </div>
+    </div>
+    <div class="panel-body clearfix">
+        <p><b>Due: </b>
+            <span>{{ task.dueDate }}</span>
+        </p>
+        <p><b>Assigned To: </b>
+            <span>{{ task.assignedTo }}</span>
+        </p>
+        <p><b>Complete?: </b>
+            <span>{{ task.completed }}</span>
+        </p>
+    </div>
+
+</div>
