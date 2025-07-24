@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema({
+const taskSchema = mongoose.Schema({
   id: { type: Number, required: true, unique: true },
   title: { type: String, required: true },
   completed: { type: Boolean, default: false },
@@ -7,4 +7,4 @@ const Schema = mongoose.Schema({
   assignedTo: { type: String, default: null },
 });
 
-module.exports = mongoose.model("Task", taskSchema);
+module.exports = mongoose.models.Task || mongoose.model("Task", taskSchema);
