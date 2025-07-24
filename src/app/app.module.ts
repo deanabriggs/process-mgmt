@@ -21,6 +21,7 @@ import { ProcessItemComponent } from './processes/process-item/process-item.comp
 import { ProjectItemComponent } from './projects/project-item/project-item.component';
 import { TaskDetailComponent } from './tasks/task-detail/task-detail.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { TasksFilterPipe } from './tasks/tasks-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     TaskItemComponent,
     ProcessItemComponent,
     ProjectItemComponent,
-    TaskDetailComponent
+    TaskDetailComponent,
+    TasksFilterPipe
   ],
   imports: [
     BrowserModule,

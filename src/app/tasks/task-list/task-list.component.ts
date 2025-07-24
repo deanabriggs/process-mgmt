@@ -18,8 +18,8 @@ private subscription: Subscription;
 
   ngOnInit(): void {  
     this.subscription = this.taskService.tasksChangedEvent
-      .subscribe((cts: Task[]) => {
-        this.tasks = cts;
+      .subscribe((tsk: Task[]) => {
+        this.tasks = tsk;
       })
 
     this.taskService.getTasks();
