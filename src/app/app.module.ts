@@ -20,6 +20,7 @@ import { TaskItemComponent } from './tasks/task-item/task-item.component';
 import { ProcessItemComponent } from './processes/process-item/process-item.component';
 import { ProjectItemComponent } from './projects/project-item/project-item.component';
 import { TaskDetailComponent } from './tasks/task-detail/task-detail.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { TaskDetailComponent } from './tasks/task-detail/task-detail.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
