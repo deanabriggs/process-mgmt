@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const projectSchema = mongoose.Schema({
-  id: { type: Number, required: true, unique: true },
+  id: { type: String, required: true, unique: true },
   title: { type: String, required: true },
   notes: { type: String, default: null },
   status: { type: String, default: "not-started" },

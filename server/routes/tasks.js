@@ -42,27 +42,37 @@ router.post("/", async (req, res) => {
 router.put("/:id", (req, res) => {
   Task.findOne({ id: req.params.id })
     .then((task) => {
+      if (!task) {
+        return res.status(404).json({
+          message: "Task not found",
+          error: { task: "Task not found" },
+        });
+      }
+
       task.title = req.body.title;
       task.completed = req.body.completed;
       task.dueDate = req.body.dueDate;
       task.assignedTo = req.body.assignedTo;
-      Task.updateOne({ id: req.params.id }, task)
-        .then((result) => {
-          res.status(204).json({
+
+      task
+        .save()
+        .then(() => {
+          res.status(200).json({
             message: "Task updated successfully",
+            task: task,
           });
         })
         .catch((error) => {
           res.status(500).json({
-            message: "An error occurred",
+            message: "An error occurred while saving the task",
             error: error,
           });
         });
     })
     .catch((error) => {
-      res.status(404).json({
-        message: "Task not found",
-        error: { task: "Task not found" },
+      res.status(500).json({
+        message: "An error occurred while finding the task",
+        error: error,
       });
     });
 });

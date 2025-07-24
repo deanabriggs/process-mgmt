@@ -46,7 +46,7 @@ export class TaskEditComponent implements OnInit {
   onSubmit(form: NgForm) {
     const value = form.value;
     let task = new Task(
-      0,
+      "0",
       value.title,
       value.completed || false,
       value.dueDate ? new Date(value.dueDate) : undefined,

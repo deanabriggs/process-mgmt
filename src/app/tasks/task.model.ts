@@ -1,6 +1,6 @@
 export class Task {
   constructor(
-    public id: number,
+    public id: string,
     public title: string,
     public completed: boolean = false,
     public dueDate?: Date,
