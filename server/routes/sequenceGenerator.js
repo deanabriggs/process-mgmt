@@ -1,8 +1,8 @@
 var Sequence = require("../models/sequence");
 
-var maxTaskId;
-var maxProcessId;
 var maxProjectId;
+var maxProcessId;
+var maxTaskId;
 var sequenceId = null;
 
 function SequenceGenerator() {
@@ -15,9 +15,9 @@ function SequenceGenerator() {
       }
 
       sequenceId = sequence._id;
-      maxTaskId = sequence.maxTaskId;
-      maxProcessId = sequence.maxProcessId;
       maxProjectId = sequence.maxProjectId;
+      maxProcessId = sequence.maxProcessId;
+      maxTaskId = sequence.maxTaskId;
     } catch (error) {
       console.error("Error initializing SequenceGenerator:", error);
     }
@@ -29,20 +29,20 @@ SequenceGenerator.prototype.nextId = function (collectionType) {
   var nextId;
 
   switch (collectionType) {
-    case "tasks":
-      maxTaskId++;
-      updateObject = { maxTaskId: maxTaskId };
-      nextId = maxTaskId;
+    case "projects":
+      maxProjectId++;
+      updateObject = { maxProjectId: maxProjectId };
+      nextId = maxProjectId;
       break;
     case "processes":
       maxProcessId++;
       updateObject = { maxProcessId: maxProcessId };
       nextId = maxProcessId;
       break;
-    case "projects":
-      maxProjectId++;
-      updateObject = { maxProjectId: maxProjectId };
-      nextId = maxProjectId;
+    case "tasks":
+      maxTaskId++;
+      updateObject = { maxTaskId: maxTaskId };
+      nextId = maxTaskId;
       break;
     default:
       return -1;

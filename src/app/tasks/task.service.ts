@@ -34,6 +34,7 @@ export class TaskService {
     this.http.get<Task[]>('http://localhost:3000/tasks')
       .subscribe(
         (tasks: Task[]) => {
+          console.log('Fetched tasks:', tasks);
           this.tasks = tasks;
           this.maxTaskId = this.getMaxId();
           this.tasks.sort((a, b) => a.title.localeCompare(b.title));

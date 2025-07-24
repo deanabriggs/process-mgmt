@@ -5,7 +5,6 @@ const Task = require("../models/task");
 
 router.get("/", (req, res) => {
   Task.find()
-    .populate("group")
     .then((tasks) => {
       res.status(200).json(tasks);
     })
@@ -25,6 +24,7 @@ router.post("/", async (req, res) => {
       assignedTo: req.body.assignedTo,
     });
 
+    console.log("Creating task:", task);
     const createdTask = await task.save();
 
     res.status(201).json({
