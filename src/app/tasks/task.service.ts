@@ -74,50 +74,46 @@ export class TaskService {
       );
   }
 
-  updateTasks(originalTask: Task, updatedTask: Task) {
-    if (!originalTask || !updatedTask) {
+  updateTasks(originalTask: Task, newTask: Task) {
+    if((!originalTask || !newTask)) {
       return;
     }
-
-    const index = this.tasks.indexOf(originalTask);
-    if (index < 0) {
+    const pos = this.tasks.findIndex(t => t.id === originalTask.id);
+    if(pos < 0){
       return;
     }
+    newTask.id = originalTask.id;
+    newTask._id = originalTask._id; // Ensure the MongoDB _id is preserved
 
-    updatedTask._id = originalTask._id;
-    const headers = new HttpHeaders({'Content-Type': 'application/json'});
-
-    this.http.put<{message: string, task: Task}>('http://localhost:3000/tasks/' + originalTask._id, updatedTask, { headers: headers })
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    this.http
+      .put('http://localhost:3000/tasks/' + originalTask.id, newTask, { headers: headers })  
       .subscribe(
-        (responseData) => {
-          this.tasks[index] = responseData.task;
+        () => {
+          this.tasks[pos] = newTask;
           this.tasksChangedEvent.next(this.tasks.slice());
-        },
-        (error: any) => {
-          console.error(error);
         }
       );
   }
 
   deleteTask(task: Task) {
-    if (!task) {
+    if(!task) {
       return;
     }
 
-    const index = this.tasks.indexOf(task);
-    if (index < 0) {
-      return;
-    }
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    this.http.delete('http://localhost:3000/tasks/' + task._id, { headers: headers })
-      .subscribe(
-        () => {
-          this.tasks.splice(index, 1);
-          this.tasksChangedEvent.next(this.tasks.slice());
-        },
-        (error: any) => {
-          console.error(error);
-        }
-      );
+
+    this.http.delete('http://localhost:3000/tasks/' + task.id, { headers: headers })
+      .subscribe(() => {
+        const pos = this.tasks.indexOf(task);
+        if (pos < 0) {
+          return;
+      }
+      this.tasks.splice(pos, 1);
+      this.tasksChangedEvent.next(this.tasks.slice());
+      },
+      (error: any) => {
+        console.error(error);
+      });
   }
 }

@@ -54,24 +54,22 @@ router.put("/:id", (req, res) => {
       task.dueDate = req.body.dueDate;
       task.assignedTo = req.body.assignedTo;
 
-      task
-        .save()
+      Task.updateOne({ id: req.params.id }, task)
         .then(() => {
-          res.status(200).json({
+          res.status(204).json({
             message: "Task updated successfully",
-            task: task,
           });
         })
         .catch((error) => {
           res.status(500).json({
-            message: "An error occurred while saving the task",
+            message: "An error occurred during update",
             error: error,
           });
         });
     })
     .catch((error) => {
       res.status(500).json({
-        message: "An error occurred while finding the task",
+        message: "An error occurred during task lookup",
         error: error,
       });
     });

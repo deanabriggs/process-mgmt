@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Task } from '../task.model';
 import { NgForm } from '@angular/forms';
-import { CdkDragDrop } from '@angular/cdk/drag-drop';
+// import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { TaskService } from '../task.service'; // Assuming you have a
 import { ActivatedRoute, Params } from '@angular/router';
 import { Router } from '@angular/router';
@@ -77,14 +77,14 @@ export class TaskEditComponent implements OnInit {
     return false;
   }
 
-  addToGroup(event: CdkDragDrop<Task[]>) {
-    const selectedTask: Task = event.item.data;
-    if(this.isInvalidTask(selectedTask)) {
-      this.dropInvalid = true;
-      setTimeout(() => {
-        this.dropInvalid = false;
-      }, 3000);
-      return;
-    }
-  }
+  // addToGroup(event: CdkDragDrop<Task[]>) {
+  //   const selectedTask: Task = event.item.data;
+  //   if(this.isInvalidTask(selectedTask)) {
+  //     this.dropInvalid = true;
+  //     setTimeout(() => {
+  //       this.dropInvalid = false;
+  //     }, 3000);
+  //     return;
+  //   }
+  // }
 }
